@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<form action="../PHP_files/addmater.php" method="post" class="basic-grey" style="margin-left: 50px;">
+			<h1>添加物资</h1>
+			<label>
+				<span>物资名：</span><input type="text" name="mater_name">
+			</label>
+			<label>
+				<span>所属组织：</span>
+				<input type="text" name="organID" readonly <?php session_start(); echo 'placeholder="'.$_SESSION['uid'].'"';?> >
+			</label>
+			
+			<label>
+				<span>数量：</span>
+				<input type="text" name="num">
+			</label>
+			<label>
+				<span>现存：</span>
+				<input type="text" name="nowhave">
+			</label>
+			<label>
+				<span>&nbsp;</span>
+				<input type="submit" class="button" value="提交">
+				<span>&nbsp;</span>
+				<input type="reset" class="button" value="清空">       
+			</label>
+		</form>
+	</body>
+</html>
+

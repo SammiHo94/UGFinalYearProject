@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<h4 style="font: '黑体'; font-size: 20px;">活动名单</h4>
+		<table class="zebra">
+			<thead><tr>
+				<th align = 'center'>活动编号</th>
+			    <th align = 'center'>活动名</th>
+			    <th align = 'center'>活动级别</th>
+			    <th align = 'center'>主办方</th>
+			    <th align = 'center'>报名开始时间</th>
+			    <th align = 'center'>报名结束时间</th>
+			    <th align = 'center'>比赛开始时间</th>
+			    <th align = 'center'>比赛结束时间</th>
+			    <th align = 'center'>&nbsp;</th>
+			</tr></thead>
+			<tfoot>
+		    <tr>
+		    </tr>
+		    </tfoot>
+			<?php
+				session_start();
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM `举办活动` ORDER BY actID DESC";
+			   	$result = mysql_query ($sql);
+			   	while ($row = mysql_fetch_array($result)){
+			   		echo "<tr>
+				   		<td align = 'center'>".$row['actID']."</td>
+				   		<td align = 'center'>".$row['actname']."</td>
+				   		<td align = 'center'>".$row['actgrade']."</td>
+				   		<td align = 'center'>".$row['organname']."</td>
+				   		<td align = 'center'>".$row['joinstartdate']."</td>
+				   		<td align = 'center'>".$row['joinenddate']."</td>
+				   		<td align = 'center'>".$row['campaignstartdate']."</td>
+				   		<td align = 'center'>".$row['campaignenddate']."</td>
+				   		<td align = 'center'><a href='../PHP_files/delete.php?mode=4&data=".$row['actID']."'>删除</a></td>
+			   		</tr>";
+			   }
+				mysql_close();
+?>
+		  </table>
+	</body>
+</html>

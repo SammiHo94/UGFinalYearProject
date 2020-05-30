@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<table class="zebra">
+			<h4 style="font: '黑体'; font-size: 20px;">组织名单</h4>
+			<thead><tr>
+				<th align = 'center'>组织编号</th>
+			    <th align = 'center'>组织名</th>
+			    <th align = 'center'>简介</th>
+			    <th align = 'center'>&nbsp;</th>
+			</tr></thead>
+			<tfoot>
+		    <tr>
+		    </tr>
+		    </tfoot>
+			<?php
+				session_start();
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM `organ` ORDER BY organID";
+			   	$result = mysql_query ($sql);
+			   	while ($row = mysql_fetch_array($result)){
+			   		echo "<tr>
+				   		<td align = 'center'>".$row['organID']."</td>
+				   		<td align = 'center'>".$row['organname']."</td>
+				   		<td align = 'center'>".$row['introduction']."</td>
+				   		<td align = 'center'><a href='../PHP_files/delete.php?mode=6&data=".$row['organID']."'>删除</a></td>
+			   		</tr>";
+			   }
+				mysql_close();
+?>
+		  </table>
+	</body>
+</html>

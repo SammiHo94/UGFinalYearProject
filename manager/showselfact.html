@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<table class="zebra">
+			<h4 style="font: '黑体'; font-size: 20px;">参赛名单</h4>
+			<thead><tr>
+				<th align = 'center'>参赛编号</th>
+			    <th align = 'center'>参赛活动</th>
+			    <th align = 'center'>活动级别</th>
+			    <th align = 'center'>主办方</th>
+			    <th align = 'center'>比赛开始时间</th>
+			    <th align = 'center'>比赛结束时间</th>
+			    <th align = 'center'>&nbsp;</th>
+			</tr></thead>
+			<tfoot>
+		    <tr>
+		    </tr>
+		    </tfoot>
+			<?php
+				session_start();
+				$stuID=$_SESSION["stuID"];
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT campaignID,actname,actgrade,organname,campaignstartdate,campaignenddate FROM `已参加活动` where stuID = '".$stuID."'";
+			   	$result = mysql_query ($sql);
+			   	while ($row = mysql_fetch_array($result)){
+			   		echo "<tr>
+				   		<td align = 'center'>".$row['campaignID']."</td>
+				   		<td align = 'center'>".$row['actname']."</td>
+				   		<td align = 'center'>".$row['actgrade']."</td>
+				   		<td align = 'center'>".$row['organname']."</td>
+				   		<td align = 'center'>".$row['campaignstartdate']."</td>
+				   		<td align = 'center'>".$row['campaignenddate']."</td>
+				   		<td align = 'center'><a href='../PHP_files/delete.php?mode=1&data=".$row['campaignID']."'>删除</a></td>
+			   		</tr>";
+			   }
+			   mysql_close();
+?>
+		  </table>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

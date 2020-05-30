@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<?php
+											session_start();
+											if(empty($_SESSION['uid'])){
+    ECHO '<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户登录|注册 <span class="caret"></span></a>
+										<ul class="dropdown-menu" style="min-width:300px;">
+											
+											<form class="basic-grey" method="post" action="../PHP_files/Sign_in.php" >
+												<h1>用户登录</h1>
+												<label>
+													<span>身份：</span>
+														<select name="power_name">
+															<option selected="selected" value="1">用户</option>
+															<option value="2">组织</option>
+															<option value="3">社团</option>
+															<option value="4">管理员</option>
+														</select>
+												</label>
+												<label>
+<span>账号：</span>
+<input type="text" name="stuID" placeholder="你的账号" />
+</label>
+												<label>
+<span>密码：</span>
+<input type="password" name="PW">
+</label>
+<label>
+<input type="submit" class="button" value="登录">
+<input type="reset" class="button" value="清空">  
+<input type="button" class="button" value="新用户注册" onclick="login()">
+</label>
+											</form>
+										</ul>
+										</li>';
+}else{
+   echo "<li><a href='myself.html'>欢迎".$_SESSION['uid']."</a></li>
+   	<li><a href='../PHP_files/login_out.php'>退出</a></li>";
+}
+?>
+	</body>
+</html>

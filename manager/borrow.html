@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+		<script type="text/javascript">
+		    function $(id){
+		        return document.getElementById(id);
+		    }
+		    function test(){
+		        var eChild=$('child_'+$("parent").value).cloneNode(true);
+		        eChild.name="child";
+		        eChild.style.display="block";
+		        eChild.value="c2"
+		        $("cspan").innerHTML="";
+		        $("cspan").appendChild(eChild);
+		    }
+		    function init(){
+		        test()
+		    }
+    	</script>
+	</head>
+	<body>
+		<form action="../PHP_files/borrow.php" method="post" class="basic-grey" style="margin-left: 50px;">
+			<h1>租借物资申请表</h1>
+			<label>
+				<span>租借人学号：</span>
+				<input type="text" name="stu_ID">
+			</label>
+			<label>
+				<span>物资所在组织：</span>
+				<select name="organ_name" id="parent" onchange="test();">
+					<option value="1" selected="selected">校学生团务中心</option>
+					<option value="2">仲恺学生会</option>
+					<option value="3">青年志愿者协会</option>
+					<option value="4">学生社团联合会</option>
+					<option value="5">大学生艺术团</option>
+					<option value="6">红十字学生理事会</option>
+				</select>
+			</label>
+			<label >
+				<span>物资：</span>
+				<span id="cspan" style="width: 70%;height: 30px;margin-bottom: 10px;"></span>
+				<select id="child_1" style="display: none;" name="mater_name">
+					<option value="500000">桌子</option>
+					<option value="500001">帐篷</option>
+					<option value="500002">椅子</option>
+        		</select>
+				<select id="child_2" style="display: none;" name="mater_name">
+					<option value="500003">桌子</option>
+					<option value="500004">帐篷</option>
+					<option value="500005">椅子</option>
+        		</select>
+        		<select id="child_3" style="display: none;" name="mater_name">
+					<option value="500006">桌子</option>
+					<option value="500007">帐篷</option>
+					<option value="500008">椅子</option>
+        		</select>
+        		<select id="child_4" style="display: none;" name="mater_name">
+        			<option value="500009">桌子</option>
+					<option value="500010">帐篷</option>
+					<option value="500011">椅子</option>
+				</select>
+        		<select id="child_5" style="display: none;" name="mater_name">
+					<option value="500012">桌子</option>
+					<option value="500013">帐篷</option>
+					<option value="500014">椅子</option>
+        		</select>
+        		<select id="child_6" style="display: none;" name="mater_name">
+					<option value="500015">桌子</option>
+					<option value="500016">帐篷</option>
+					<option value="500017">椅子</option>
+        		</select>
+			</label>
+			<br />
+			<label>
+				<span>数量：</span>
+				<input type="text" name="num">
+			</label>
+			<label>
+				<span>借用时间：</span>
+				<input name="borrow_date" type="date" value="date()"/>
+			</label>
+			<label>
+				<span>归还时间：</span>
+				<input name="return_date" type="date" value="date()"/>
+			</label>
+			<label>
+				<span>&nbsp;</span>
+				<input type="submit" class="button" value="提交">
+				<span>&nbsp;</span>
+				<input type="reset" class="button" value="清空">       
+			</label>
+		</form>
+	</body>
+</html>

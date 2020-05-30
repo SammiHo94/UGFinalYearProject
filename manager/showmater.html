@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+			<h3>物资现状</h3>
+			<table class="zebra">
+			<thead><tr>
+				<th align = 'center'>物资号</th>
+			    <th align = 'center'>物资名</th>
+			    <th align = 'center'>数量</th>
+			    <th align = 'center'>现存</th>
+			    <th align = 'center'>&nbsp;</th>
+			</tr></thead>
+			<tfoot>
+		    <tr>
+		    </tr>
+		 </tfoot>
+			<?php
+				session_start();
+				$organID=$_SESSION["organID"];
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM `materials` where organID = '".$organID."'";
+			   	$result = mysql_query ($sql);
+			   	while ($row = mysql_fetch_array($result)){
+			   		echo "<tr>
+				   		<td align = 'center'>".$row['materID']."</td>
+				   		<td align = 'center'>".$row['matername']."</td>
+				   		<td align = 'center'>".$row['quantity']."</td>
+						<td align = 'center'>".$row['nowhave']."</td>
+						<td align = 'center'><a href='../PHP_files/delete.php?mode=8&data=".$row['materID']."'>删除</a></td>
+			   		</tr>";
+			   }
+?>
+		  </table>
+	</body>
+</html>

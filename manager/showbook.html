@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+			<h3>场地租借审批</h3>
+			<table class="zebra">
+				<thead><tr>
+					<th align = 'center'>租借号</th>
+					<th align = 'center'>学号</th>
+					<th align = 'center'>姓名</th>
+					<th align = 'center'>手机号</th>
+				    <th align = 'center'>场地名</th>
+				    <th align = 'center'>数量</th>
+				    <th align = 'center'>借出日</th>
+				    <th align = 'center'>归还日</th>
+				    <th align = 'center'>状态</th>
+				    <th align = 'center'>&nbsp;</th>
+				    <th align = 'center'>&nbsp;</th>
+				    <th align = 'center'>&nbsp;</th>
+				</tr></thead>
+				<tfoot>
+				    <tr>
+				    </tr>
+			 	</tfoot>
+			<?php
+				session_start();
+				$organID=$_SESSION["organID"];
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM `申请场地` ORDER BY bookID DESC";
+			   	$result = mysql_query ($sql);
+			   	while ($row = mysql_fetch_array($result)){
+			   		echo "<tr>
+				   		<td align = 'center'>".$row['bookID']."</td>
+				   		<td align = 'center'>".$row['borrower']."</td>
+				   		<td align = 'center'>".$row['stuname']."</td>
+				   		<td align = 'center'>".$row['telenum']."</td>
+				   		<td align = 'center'>".$row['sitename']."</td>
+				   		<td align = 'center'>".$row['number']."</td>
+				   		<td align = 'center'>".$row['borrowdate']."</td>
+				   		<td align = 'center'>".$row['returndate']."</td>
+				   		<td align = 'center'>".$row['state']."</td>
+				   		<td align = 'center'><a href='../PHP_files/update.php?mode=6&data=".$row['bookID']."'>通过</a></td>
+				   		<td align = 'center'><a href='../PHP_files/update.php?mode=7&data=".$row['bookID']."'>驳回</a></td>
+				   		<td align = 'center'><a href='../PHP_files/update.php?mode=8&data=".$row['bookID']."'>归还</a></td>
+			   		</tr>";
+			   }
+?>
+		  </table>
+	</body>
+</html>

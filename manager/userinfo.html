@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<?php
+				session_start();
+				$stuID=$_SESSION["stuID"];
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM member where stuID = '".$stuID."'";
+			   	$result = mysql_query ($sql);
+			   	$row = mysql_fetch_array($result);
+				//mysql_close();
+?>
+		<form method="post" action="../PHP_files/update_member.php" class="basic-grey" style="margin-left: 50px;">
+							<h1>我的资料</h1>
+							<label>
+								<span>姓名：</span>
+								<input type="text" name="name" <?php echo 'value="'.$row['stuname'].'"';?> >
+							</label>
+							<label>
+								<span>学号：</span>
+								<input type="text" name="stuID" readonly <?php echo 'value="'.$row['stuID'].'"';?> >
+							</label>
+							<label>
+								<span>性别：</span>
+								<input type="text" name="sex" <?php echo 'value="'.$row['sex'].'"';?> >
+							</label>
+							<br />
+							<label>
+								<span>手机：</span>
+								<input type="text" name="telenum" <?php echo 'value="'.$row['telenum'].'"';?> >
+							</label>
+							<label>
+								<span>宿舍：</span>
+								<input type="text" name="Dome" <?php echo 'value="'.$row['dome'].'"';?> >
+							</label>
+							<label>
+								<span>年级：</span>
+								<input type="text" name="classgroup" <?php echo 'value="'.$row['classgroup'].'"';?>>
+							</label>
+							<label>
+								<span>&nbsp;</span>
+								<input type="submit" class="button" value="修改">    
+							</label>
+						</form>
+	</body>
+</html>

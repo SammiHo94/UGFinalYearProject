@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<?php
+				session_start();
+				$clubID=$_SESSION['clubID'];
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM club where clubID = '".$clubID."'";
+			   	$result = mysql_query ($sql);
+			   	$row = mysql_fetch_array($result);
+				mysql_close();
+?>
+		<form method="post" action="../PHP_files/update_club.php" class="basic-grey" style="margin-left: 50px;">
+							<h1>社团资料</h1>
+							<label>
+								<span>社团名：</span>
+								<input type="text" name="name" <?php echo 'value="'.$row['clubname'].'"';?> >
+							</label>
+							<label>
+								<span>社团号：</span>
+								<input type="text" name="clubID" readonly <?php echo 'value="'.$row['clubID'].'"';?> >
+							</label>
+							<label>
+								<span>简介：</span>
+								<textarea name="intro"> <?php echo $row['introduction'];?> </textarea>
+							</label>
+							<label>
+								<span>&nbsp;</span>
+								<input type="submit" class="button" value="修改">    
+							</label>
+						</form>
+	</body>
+</html>

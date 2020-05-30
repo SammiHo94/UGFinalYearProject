@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<form action="../PHP_files/booksite.php" method="post" class="basic-grey" style="margin-left: 50px;">
+			<h1>场地借用申请表</h1>
+			<label>
+				<span>租借人学号：</span>
+				<input type="text" name="stu_ID">
+			</label>
+			<label>
+				<span>场地名：</span>
+				<select name="site_name">
+					<option>选择场地</option>	
+					<?php
+						//查找已有物资并输出到选择表单
+						require "../PHP_files/functions.php";
+						dbconnect("root", "");
+						
+						$sql="select * from site";
+						$result=mysql_query($sql);
+						
+						while ($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
+					    	echo '<option value="'.$row["siteID"].'">'.$row["sitename"].'</option>';
+						};
+					?>
+				</select>
+			</label>
+			<label>
+				<span>数量：</span>
+				<input type="text" name="num">
+			</label>
+			<label>
+				<span>借用时间：</span>
+				<input name="borrow_date" type="date" value="date()"/>
+			</label>
+			<label>
+				<span>归还时间：</span>
+				<input name="return_date" type="date" value="date()"/>
+			</label>
+			<label>
+				<span>&nbsp;</span>
+				<input type="submit" class="button" value="提交">
+				<span>&nbsp;</span>
+				<input type="reset" class="button" value="清空">       
+			</label>
+		</form>
+	</body>
+</html>

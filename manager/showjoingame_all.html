@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<table class="zebra">
+			<h4 style="font: '黑体'; font-size: 20px;">参赛名单</h4>
+			<thead><tr>
+				<th align = 'center'>参赛编号</th>
+			    <th align = 'center'>参赛活动</th>
+			    <th align = 'center'>活动级别</th>
+			    <th align = 'center'>主办方</th>
+ 				<th align = 'center'>学号</th> 
+ 				<th align = 'center'>参赛者</th>
+ 				<th align = 'center'>手机号</th> 
+			</tr></thead>
+			<tfoot>
+		    <tr>
+		    </tr>
+		    </tfoot>
+			<?php
+				session_start();
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM `已参加活动` ORDER BY campaignID DESC";
+			   	$result = mysql_query ($sql);
+			   	while ($row = mysql_fetch_array($result)){
+			   		echo "<tr>
+				   		<td align = 'center'>".$row['campaignID']."</td>
+				   		<td align = 'center'>".$row['actname']."</td>
+				   		<td align = 'center'>".$row['actgrade']."</td>
+				   		<td align = 'center'>".$row['organname']."</td>
+				   		<td align = 'center'>".$row['stuID']."</td>
+				   		<td align = 'center'>".$row['stuname']."</td>
+				   		<td align = 'center'>".$row['telenum']."</td>
+			   		</tr>";
+			   }
+				mysql_close();
+?>
+		  </table>
+	</body>
+</html>

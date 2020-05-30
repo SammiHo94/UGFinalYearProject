@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+		<script type="text/javascript">
+		    function $(id){
+		        return document.getElementById(id);
+		    }
+		    function test(){
+		        var eChild=$('child_'+$("parent").value).cloneNode(true);
+		        eChild.name="child";
+		        eChild.style.display="block";
+		        eChild.value="c2"
+		        $("cspan").innerHTML="";
+		        $("cspan").appendChild(eChild);
+		    }
+		    function init(){
+		        test()
+		    }
+    	</script>
+	</head>
+	<body onload="init();">
+		<form action="../PHP_files/join_organ.php" method="post" class="basic-grey" style="margin-left: 50px;">
+			<h1>加入组织</h1>
+			<label>
+				<span>学号：</span><input type="text" name="stuID">
+			</label>
+			<label>
+				<span>组织：</span>
+				<select name="organ_name" id="parent" onchange="test();">
+					<option value="1" selected="selected">校学生团务中心</option>
+					<option value="2">仲恺学生会</option>
+					<option value="3">青年志愿者协会</option>
+					<option value="4">学生社团联合会</option>
+					<option value="5">大学生艺术团</option>
+					<option value="6">红十字学生理事会</option>
+				</select>
+			</label>
+			<label >
+				<span>部门：</span>
+				<span id="cspan" style="width: 70%;"></span>
+				<select id="child_1" style="display: none;" name="department_name">
+					<option value="10000">秘书部</option>
+					<option value="10001">档案部</option>
+					<option value="10003">宣传部</option>
+					<option value="10004">组织部</option>
+					<option value="10005">实践部</option>
+					<option value="10006">调研部</option>
+					<option value="10007">学术科技部</option>
+					<option value="10008">网络部</option>
+					<option value="10009">外联部</option>
+					<option value="10002">编辑部</option>
+        		</select>
+				<select id="child_2" style="display: none;" name="department_name">
+					<option value="10100">办公室</option>
+					<option value="10101">外联部</option>
+					<option value="10102">档案部</option>
+					<option value="10103">文娱部</option>
+					<option value="10104">体育部</option>
+					<option value="10105">心理部</option>
+					<option value="10106">学术部</option>
+					<option value="10107">网信部</option>
+					<option value="10108">宣传部</option>
+					<option value="10109">权益与调研部</option>
+					<option value="10110">自律部</option>
+        		</select>
+        		<select id="child_3" style="display: none;" name="department_name">
+					<option value="10200">办公室</option>
+					<option value="10201">外联部</option>
+					<option value="10202">宣传部</option>
+        		</select>
+        		<select id="child_4" style="display: none;" name="department_name">
+        			<option value="10300">办公室</option>
+					<option value="10301">外联部</option>
+					<option value="10302">宣传部</option>
+					<option value="10303">会员部</option>
+				</select>
+        		<select id="child_5" style="display: none;" name="department_name">
+					<option value="10400">办公室</option>
+					<option value="10401">文艺部</option>
+					<option value="10402">宣传部</option>
+        		</select>
+        		<select id="child_6" style="display: none;" name="department_name">
+					<option value="10500">办公室</option>
+					<option value="10501">外联部</option>
+					<option value="10502">宣传部</option>
+					<option value="10503">医疗部</option>
+        		</select>
+			</label>
+			<br />
+			<label>
+				<span>职位：</span>
+				<select name="position_name">
+					<option selected="selected" value="助理">助理</option>
+					<option value="正主席">正主席</option>
+					<option value="副主席">副主席</option>
+					<option value="正部长">正部长</option>
+					<option value="副部长">副部长</option>
+			</select>
+			</label>
+			<label>
+				<span>&nbsp;</span>
+				<input type="submit" class="button" value="提交">
+				<span>&nbsp;</span>
+				<input type="reset" class="button" value="清空">       
+			</label>
+	</body>
+</html>

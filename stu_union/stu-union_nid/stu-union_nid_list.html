@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>学生会网宣部</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../css/my.css" />
+		
+		<link href="../../css/other.css" rel="stylesheet" type="text/css" >
+		<link href="../../css/slider.css" rel="stylesheet" type="text/css">
+		<link href="../../css/slider.css" rel="stylesheet" type="text/css">
+		<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+		<!--theme-style-->
+		<link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" /><link rel="stylesheet" href="../../css/form-style.css" />
+		<!--//theme-style-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
+		<!--fonts-->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+		<!--//fonts-->
+		<script src="../../js/jquery.min.js"></script>
+		<!--script-->
+	</head>
+
+	<body>
+		<!--
+        	作者：offline
+        	时间：2017-03-1
+        	描述：导航条
+       -->
+        
+		<div class="header" style="margin-bottom: 50px;">
+			<div class="top-header">
+				<div class="navbar navbar-fixed-top">
+					<nav class="navbar navbar-inverse" style="background-color: darkslateblue;">
+						<div class="container">
+							<div class="navbar-header">
+								<botton type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynav" aria-expanded="false">
+									<span class="sr-only"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</botton>
+								<a class="navbar-brand" href="../../index.html" style="color: #999999;">仲恺社团网</a>
+							</div>
+							<div id="mynav" class="navbar-collapse collapse" style="float: right;">
+								<ul class="nav navbar-nav">
+									<li><a href="../../index.html">首页</a></li>
+										<?php
+											session_start();
+											if(empty($_SESSION['uid'])){
+    ECHO '<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户登录|注册 <span class="caret"></span></a>
+										<ul class="dropdown-menu" style="min-width:300px;">
+											
+											<form class="basic-grey" method="post" action="../../PHP_files/Sign_in.php" >
+												<h1>用户登录</h1>
+												<label>
+													<span>身份：</span>
+														<select name="power_name">
+															<option selected="selected" value="1">用户</option>
+															<option value="2">组织</option>
+															<option value="3">社团</option>
+															<option value="4">管理员</option>
+														</select>
+												</label>
+												<label>
+<span>账号：</span>
+<input type="text" name="stuID" placeholder="你的账号" />
+</label>
+												<label>
+<span>密码：</span>
+<input type="password" name="PW">
+</label>
+<label>
+<input type="submit" class="button" value="登录">
+<input type="reset" class="button" value="清空">  
+<input type="button" class="button" value="新用户注册" onclick="login()">
+</label>
+											</form>
+										</ul>
+										</li>';
+}else{
+   echo "<li><a href='../../about/myself.html' target='_blank'>欢迎".$_SESSION['uid']."</a></li>
+   	<li><a href='../../PHP_files/login_out.php'>退出</a></li>";
+}
+?>
+									<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">联系我们<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li>扫描二维码添加公众号</li>
+								<li><img style="width: 200px;height: 200px;" src="../../img/xiaohui.png"/></li>
+							</ul>
+						</li>
+								</ul>	
+							<script>
+								function login(){ window.location.href="../../about/login.html";     }  
+							</script>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<!--
+        	作者：offline
+        	时间：2016-06-15
+        	描述：中间
+        -->
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-3 col-xs-12">
+					<!--
+            			作者：offline
+            			时间：2016-06-15
+            			描述：左侧菜单栏
+            		-->
+					<div id="mymanu-left" class="sub-cate">
+						<div class=" top-nav rsidebar span_1_of_left">
+							<h3 class="cate">七大组织</h3>
+							<ul class="menu">
+								<li class="item1"><a href="other.html">校学生团务中心 </a>
+									<ul class="cute">
+										<li class="subitem1"><a href="../../League/League_officer/League_officer_list.html">秘书部</a></li>
+										<li class="subitem2"><a href="../../League/League_organization/League_organization_list.html">组织部</a></li>
+										<li class="subitem3"><a href="../../League/League_practice/League_practice_list.html">实践部</a></li>
+										<li class="subitem4"><a href="../../League/League_editorial/League_editorial_list.html">编辑部</a></li>
+										<li class="subitem5"><a href="../../League/League_nid/League_nid_list.html">网络部</a></li>
+										<li class="subitem6"><a href="../../League/League_propaganda/League_propaganda_list.html">宣传部</a></li>
+										<li class="subitem7"><a href="../../League/League_public_relations/League_public_relations_list.html">外联部</a></li>
+										<li class="subitem7"><a href="../../League/League_academic/League_academic_list.html">学术部</a></li>
+										<li class="subitem7"><a href="../../League/League_public_relations/League_archives_list.html">档案部</a></li>
+										<li class="subitem7"><a href="../../League/League_research/League_research_list.html">调研部</a></li>
+									</ul>
+								</li>
+								<li class="item2"><a href="other.html">校学生会</a>
+									<ul class="cute">
+										<li class="subitem1"><a href="../../stu_union/stu-union_officer/stu-union_officer_list.html">办公室</a></li>
+										<li class="subitem2"><a href="../../stu_union/stu-union_public_relations/stu-union_public_relations_list.html">外联部</a></li>
+										<li class="subitem3"><a href="../../stu_union/stu-union_life/stu-union_life_list.html">生活部</a></li>
+										<li class="subitem4"><a href="../../stu_union/stu_union_equity/stu_union_equity_list.html">权益调研部</a></li>
+										<li class="subitem5"><a href="../../stu_union/stu-union_self-discipline/stu-union_self-discipline_list.html">自律部</a></li>
+										<li class="subitem6"><a href="../../stu_union/stu-union_propaganda/stu-union_propaganda_list.html">宣传部</a></li>
+										<li class="subitem7"><a href="../../stu_union/stu-union_nid/stu-union_nid_list.html">网信部</a></li>
+										<li class="subitem8"><a href="../../stu_union/stu-union_sports/stu-union_sports_list.html">体育部</a></li>
+									</ul>
+								</li>
+								<li class="item3"><a href="other.html">青年志愿者协会</a>
+									<ul class="cute">
+										<li class="subitem1"><a href="../../YVA/YVA_officer/YVA_officer_list.html">办公室</a></li>
+										<li class="subitem2"><a href="../../YVA/YVA_public_relations/YVA_public_relations_list.html">外联部</a></li>
+										<li class="subitem3"><a href="../../YVA/YVA_propaganda/YVA_propaganda_list.html">宣传部</a></li>
+									</ul>
+								</li>
+								<li class="item3"><a href="other.html">学生社团联合会</a>
+									<ul class="cute">
+										<li class="subitem1"><a href="../../club_union/club_union_officer/club_union_officer_list.html">办公室</a></li>
+										<li class="subitem2"><a href="../../club_union/club_union_public_relations/club_union_public_relations_list.html">外联部</a></li>
+										<li class="subitem3"><a href="../../club_union/club_union_propaganda/club_union_propaganda_list.html">宣传部</a></li>
+										<li class="subitem3"><a href="../../club_union/club_union_member/club_union_member_list.html">会员部</a></li>
+									</ul>
+								</li>
+								<li class="item3"><a href="other.html">红十字爱心理事会</a>
+									<ul class="cute">
+										<li class="subitem1"><a href="../../red_cross/red_cross_officer/red_cross_officer_list.html">办公室</a></li>
+										<li class="subitem2"><a href="../../red_cross/red_cross_public_relations/red_cross_public_relations_list.html">外联部</a></li>
+										<li class="subitem3"><a href="../../red_cross/red_cross_propaganda/red_cross_propaganda_list.html">宣传部</a></li>
+										<li class="subitem3"><a href="../../red_cross/red_cross_medical/red_cross_medical_list.html">医疗部</a></li>
+									</ul>
+								</li>
+								<li class="item3"><a href="other.html">大学生艺术团</a>
+									<ul class="cute">
+										<li class="subitem1"><a href="../../Art/Art_officer/Art_officer_list.html">办公室</a></li>
+										<li class="subitem2"><a href="../../Art/Art_AD/Art_AD_list.html">文艺部</a></li>
+										<li class="subitem3"><a href="../../Art/Art_propaganda/Art_propaganda_list.html">宣传部</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+
+						<!--动画-->
+						<script type="text/javascript">
+							$(function() {
+								var menu_ul = $('.menu > li > ul'),
+									menu_a = $('.menu > li > a');
+								menu_ul.hide();
+								menu_a.click(function(e) {
+									e.preventDefault();
+									if (!$(this).hasClass('active')) {
+										menu_a.removeClass('active');
+										menu_ul.filter(':visible').slideUp('normal');
+										$(this).addClass('active').next().stop(true, true).slideDown('normal');
+									} else {
+										$(this).removeClass('active');
+										$(this).next().stop(true, true).slideUp('normal');
+									}
+								});
+							});
+						</script>
+					</div>
+				</div>
+				<!--
+					作者：offline
+					时间：2016-06-16
+					描述：中心替换区
+				-->
+				<div class="col-lg-8 col-md-6 col-xs-12">
+					<div class="container" style="height: 800px; width: 100%;margin-bottom: 20px; background-color: #FFFFFF;">
+						<h3 style="text-align: center;">校学生会——网宣部</h3>
+						<ul>
+				    		<li style="font-size: 15px"><a href="stu-union_nid.html">校学生会网宣部简介</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+					<!--
+						作者：offline
+						时间：2016-06-15
+						描述：右侧菜单栏
+					-->
+				<div class="col-lg-2 col-md-3 col-xs-12">
+					<div id="mymanu-right">
+						<div class=" top-nav rsidebar span_1_of_right">
+							<h3 class="cate">学生社团</h3>
+							<ul class="menu2">
+								<li class="item1">
+									<ul class="cute">
+										<li class="subitem1"><a href="../../club/club_marketing.html">市场营销协会</a></li>
+										<li class="subitem2"><a href="../../club/club_career.html">职业发展协会 </a></li>
+										<li class="subitem3"><a href="../../club/club_enterprise.html">创新创业协会 </a></li>
+										<li class="subitem4"><a href="../../club/club_e-commerce.html">电子商务协会 </a></li>
+										<li class="subitem5"><a href="../../club/club_wireless.html">无线电协会 </a></li>
+										<li class="subitem6"><a href="../../club/club_environmental.html">环保协会 </a></li>
+										<li class="subitem7"><a href="../../club/club_music.html">顽石音乐协会 </a></li>
+										<li class="subitem8"><a href="../../club/club_wingchun.html">咏春拳协会 </a></li>
+										<li class="subitem9"><a href="../../club/club_taekwondo.html">跆拳道协会</a></li>
+										<li class="subitem10"><a href="../../club/club_E-CLUB.html">英语俱乐部</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<!--显示列表-->
+						<script type="text/javascript">
+							$(function() {
+								var menu2_ul = $('.menu2 > li > ul');
+								menu2_ul.show();
+							});
+						</script>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+		<!--
+			作者：offline
+			时间：2016-06-16
+			描述：底部
+		-->
+		<div class="container">
+			<footer class="my_footer">
+				<div class="footer_top">
+					<div class="row ">
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<a href="../../index.html"><img style="height: 100px;width: 100px;" src="../../img/xiaohui.png" /></a>
+							
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<h4>简介</h4>
+							<ul>
+								<li><a href="../../about/introduction.html">社团管理系统简介</a></li>
+								<li><a href="../../about/function.html">主要功能</a></li>
+							</ul>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<h4>加入我们</h4>
+							<ul>
+								<li><a href="../../club_union/club_union_officer/club_union_officer.html">组建社团</a></li>
+								<li><a href="../../about/login.html">用户注册</a></li>
+							</ul>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<h4>导航</h4>
+							<ul>
+								<li><a href="http://www.zhku.edu.cn/" target="_blank">仲恺农业工程学院官网</a></li>
+								<li><a href="http://jw.zhku.edu.cn/" target="_blank">仲恺农业工程学院教务管理系统</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="footer_bottom text-center">
+
+					<ul>
+						<li>京ICP备XXXXXX号</li>
+						<li>京公网安备XXXXXXX</li>
+					</ul>
+
+				</div>
+		</div>
+		</div>
+		</footer>
+		</div>
+
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+	</body>
+
+</html>

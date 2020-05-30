@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+		<script type="text/javascript">
+		    function $(id){
+		        return document.getElementById(id);
+		    }
+		    function test(){
+		        var eChild=$('child_'+$("parent").value).cloneNode(true);
+		        eChild.name="child";
+		        eChild.style.display="block";
+		        eChild.value="c2"
+		        $("cspan").innerHTML="";
+		        $("cspan").appendChild(eChild);
+		    }
+		    function init(){
+		        test()
+		    }
+    	</script>
+	</head>
+	<body onload="init();">
+		<form action="../PHP_files/join_game.php" method="post" class="basic-grey" style="margin-left: 50px;" >
+			<h1>活动报名</h1>
+			<label>
+				<span>学号：</span><input type="text" name="stuID">
+			</label>
+			<label>
+				<span>主办方：</span>
+				<select name="organ_name" id="parent" onchange="test();">
+					<option value="0" selected="selected">选择组织</option>
+					<option value="1" >校学生团务中心</option>
+					<option value="2">仲恺学生会</option>
+					<option value="3">青年志愿者协会</option>
+					<option value="4">学生社团联合会</option>
+					<option value="5">红十字学生理事会</option>
+				</select>
+			</label>
+			<label >
+				<span>活动：</span>
+				<span id="cspan" style="width: 70%;"></span>
+				<select id="child_0" style="display: none;" name="act_ID">
+					<option value="">选择活动</option>
+        		</select>
+				<select id="child_1" style="display: none;" name="act_ID">
+					<option value="30000001">团日活动</option>
+					<option value="30000006">团务日志</option>
+        		</select>
+				<select id="child_2" style="display: none;" name="act_ID">
+					<option value="30000000">IT文化节</option>
+					<option value="30000002">仲恺杯</option>
+        		</select>
+        		<select id="child_3" style="display: none;" name="act_ID">
+					<option value="30000003">广交会志愿者</option>
+        		</select>
+        		<select id="child_4" style="display: none;" name="act_ID">
+        			<option value="30000005">社联周年庆典</option>
+				</select>
+        		<select id="child_5" style="display: none;" name="act_ID">
+					<option value="30000004">急救培训</option>
+        		</select>
+			</label>
+			<br />
+			<label>
+				<span>&nbsp;</span>
+				<input type="submit" class="button" value="提交">
+				<span>&nbsp;</span>
+				<input type="reset" class="button" value="清空">       
+			</label>
+	</body>
+</html>

@@ -1,0 +1,176 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>社团组织管理系统</title>
+<script language="javascript" src="../js/jquery.js"></script>
+<link rel="stylesheet" href="../css/manager_style.css" />
+<link rel="stylesheet" href="../css/form-style.css" />
+
+</head>
+<body>
+	<?php
+		session_start();
+		if(empty($_SESSION['uid'])){
+			echo '<script type="text/javascript" charset="utf-8">alert("请先登录")</script>';
+			echo "<script>window.location.href='http://localhost/Organization/index.html';</script>";
+		}
+	?>
+<div id="mainDiv">
+	<div id="topDiv">
+		<div id="tmenu">
+		</div>
+	</div>
+	
+	<div id="centerDiv">
+	<div id="left">
+	<div id="lhead">管理菜单</div>
+		<ul class="menu">
+			<?php 
+				if (!session_id()) {session_start();}
+				error_reporting(E_ALL || ~E_NOTICE);
+				$power = $_SESSION['power'];
+				$organ = $_SESSION['organID'];
+				switch ($power)
+				{
+					case 1:   /*普通用户 */
+						echo '<li class="item1"><a href="other.html">加入 </a>
+							<ul class="cute">
+								<li class="subitem1"><a href="../manager/join_organ.html" target="main">加入组织</a></li>
+								<li class="subitem2"><a href="../manager/join_club.html" target="main">加入社团</a></li>
+								<li class="subitem3"><a href="../manager/join_game.html" target="main">参加活动</a></li>
+							</ul>
+						</li>
+								<li class="item2"><a href="other.html">关于自己</a>
+								<ul class="cute">
+									<li class="subitem1"><a href="../manager/userinfo.html" target="main">我的资料</a></li>
+									<li class="subitem2"><a href="../manager/showselforgan.html" target="main">已加入组织社团</a></li>
+									<li class="subitem3"><a href="../manager/showselfact.html" target="main">已申请活动</a></li>
+									<li class="subitem3"><a href="../manager/showselfborrow.html" target="main">已借用物资场地</a></li>
+									<li class="subitem4"><a href="../manager/showselfaward.html" target="main">获得奖项</a></li>
+								</ul>
+							</li>';
+						break;
+							
+					case 2:   /*组织管理员*/
+						echo '<li class="item1"><a href="other.html">活动</a>
+							<ul class="cute">
+								<li class="subitem1"><a href="../manager/addact.html" target="main">举办活动</a></li>
+								<li class="subitem2"><a href="../manager/showact.html" target="main">已举办活动</a></li>
+								<li class="subitem3"><a href="../manager/showjoingame.html" target="main">参赛名单</a></li>
+								<li class="subitem4"><a href="../manager/addaward.html" target="main">添加获奖名单</a></li>
+								<li class="subitem5"><a href="../manager/showaward.html" target="main">查看获奖名单</a></li>
+							</ul>
+							</li>
+							<li class="item2"><a href="other.html">物资场地</a>
+								<ul class="cute">
+									<li class="subitem1"><a href="../manager/borrow.html" target="main">租借物资</a></li>
+									<li class="subitem2"><a href="../manager/booksite.html" target="main">场地借用</a></li>
+									<li class="subitem1"><a href="../manager/addmater.html" target="main">添加物资</a></li>
+									<li class="subitem3"><a href="../manager/showborrow.html" target="main">租借物资审批</a></li>';
+								
+								if($organ == "101"){
+									echo '<li class="subitem3"><a href="../manager/showbook.html" target="main">租借场地审批</a></li>
+										<li class="subitem3"><a href="../manager/showsite.html" target="main">场地借用情况</a></li>';
+								}
+								echo '<li class="subitem4"><a href="../manager/showmater.html" target="main">物资借用情况</a></li>
+								</ul>
+							</li>
+							<li class="item3"><a href="other.html">人事管理</a>
+								<ul class="cute">
+									<li class="subitem1"><a href="../manager/organinfo.html" target="main">我的资料</a></li>
+									<li class="subitem2"><a href="../manager/showmember.html" target="main">现有成员</a></li>
+									<li class="subitem3"><a href="../manager/shownewmember.html" target="main">招新名单</a></li>
+								</ul>
+							</li>';
+						break;
+					
+					case 3:   /*社团管理员*/
+						echo '
+							<li class="item1"><a href="other.html">物资场地</a>
+								<ul class="cute">
+									<li class="subitem1"><a href="../manager/borrow.html" target="main">租借物资</a></li>
+									<li class="subitem2"><a href="../manager/booksite.html" target="main">场地借用</a></li>
+								</ul>
+							</li>
+							<li class="item2"><a href="other.html">人事管理</a>
+								<ul class="cute">
+									<li class="subitem1"><a href="../manager/clubinfo.html" target="main">我的资料</a></li>
+									<li class="subitem2"><a href="../manager/showcluber.html" target="main">现有成员</a></li>
+									<li class="subitem3"><a href="../manager/shownewcluber.html" target="main">招新名单</a></li>
+								</ul>
+							</li>';
+						break;
+						
+						
+					default:
+						echo '<li class="item1"><a href="other.html">活动</a>
+							<ul class="cute">
+								<li class="subitem1"><a href="../manager/showact_all.html" target="main">活动名单</a></li>
+								<li class="subitem2"><a href="../manager/showjoingame_all.html" target="main">参赛名单</a></li>
+								<li class="subitem3"><a href="../manager/showaward_all.html" target="main">获奖名单</a></li>
+							</ul>
+							</li>
+							<li class="item2"><a href="other.html">物资场地</a>
+								<ul class="cute">
+									<li class="subitem1"><a href="../manager/addsite.html" target="main">添加场地</a></li>
+									<li class="subitem2"><a href="../manager/showsite.html" target="main">场地借用情况</a></li>
+									<li class="subitem3"><a href="../manager/showmater_all.html" target="main">物资租借情况</a></li>
+								</ul>
+							</li>
+							<li class="item3"><a href="other.html">人事管理</a>
+								<ul class="cute">
+									<li class="subitem1"><a href="../manager/showorgan.html" target="main">组织名单</a></li>
+									<li class="subitem2"><a href="../manager/addorgan.html" target="main">添加组织</a></li>
+									<li class="subitem3"><a href="../manager/showclub.html" target="main">社团名单</a></li>
+									<li class="subitem4"><a href="../manager/addclub.html" target="main">添加社团</a></li>
+								</ul>
+							</li>';
+						break;
+				}
+			?>
+		</ul>
+		<ul class="menu2">
+								<li class="item1">
+									<ul class="cute">
+										<li class="subitem1"><a href="../PHP_files/login_out.php">退出登录</a></li>
+									</ul>
+								</li>
+							</ul>
+					<!--
+                    	动画效果
+                    -->	
+							<script type="text/javascript">
+							$(function() {
+								var menu_ul = $('.menu > li > ul'),
+									menu_a = $('.menu > li > a');
+								menu_ul.hide();
+								menu_a.click(function(e) {
+									e.preventDefault();
+									if (!$(this).hasClass('active')) {
+										menu_a.removeClass('active');
+										menu_ul.filter(':visible').slideUp('normal');
+										this.style.background='#06597D';
+										$(this).addClass('active').next().stop(true, true).slideDown('normal');
+									} else {
+										$(this).removeClass('active');
+										this.style.background="url(../img/managerimg/menu-bg.jpg) repeat-x";
+										$(this).next().stop(true, true).slideUp('normal');
+										
+									}
+								});
+							});
+						</script>
+	</div>
+	
+	<div id="right">
+		<iframe id="right" name="main" style="width: 87%;"></iframe>
+	</div>
+</div>
+	<div id="bottomDiv"></div>
+</div>
+<script language="javascript">
+$("#test1").toggle(function(){$("#test").slideDown()},function(){$("#test").slideUp()})
+</script>
+
+</body>
+</html>

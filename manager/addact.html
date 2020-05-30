@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<form action="../PHP_files/addact.php" method="post" class="basic-grey" style="margin-left: 50px;">
+			<h1>举办活动</h1>
+			<label>
+				<span>活动名：</span><input type="text" name="act_name">
+			</label>
+			<label>
+				<span>主办方：</span>
+				<input type="text" name="sponsorID" readonly <?php session_start(); echo 'placeholder="'.$_SESSION['uid'].'"';?> >
+			</label>
+			<label>
+				<span>级别：</span>
+				<select name="grade_class">
+					<option selected="selected">选择级别</option>
+					<option value="校级">校级</option>
+					<option value="院级">院级</option>
+				</select>
+			</label>
+			<label>
+				<span>简介：</span>
+				<textarea rows="10" name="intro"></textarea>
+			</label>
+			<label>
+				<span>报名开始时间：</span>
+				<input name="jion_start_date" type="date" value="date()"/>
+			</label>
+			<label>
+				<span>报名结束时间：</span>
+				<input name="jion_end_date" type="date" value="date()"/>
+			</label>
+			<label>
+				<span>比赛开始时间：</span>
+				<input name="match_start_date" type="date" value="date()"/>
+			</label>
+			<label>
+				<span>比赛结束时间：</span>
+				<input name="match_end_date" type="date" value="date()"/>
+			</label>
+			<label>
+				<span>&nbsp;</span>
+				<input type="submit" class="button" value="提交">
+				<span>&nbsp;</span>
+				<input type="reset" class="button" value="清空">       
+			</label>
+		</form>
+	</body>
+</html>

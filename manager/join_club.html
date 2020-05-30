@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<form action="../PHP_files/join_club.php" class="basic-grey" method="post" style="margin-left: 50px;">
+			<h1>加入社团</h1>
+			<label>
+				<span>学号：</span><input type="text" name="stuID">
+			</label>
+			<label>
+				<span>社团：</span>
+				<select name="club_name">
+					<option value="">选择组织</option>
+					<?php
+						//查找已有社团并输出到选择表单
+						require "../PHP_files/functions.php";
+						dbconnect("root", "");
+						
+						$sql="select * from club";
+						$result=mysql_query($sql);
+						
+						while ($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
+					    	echo '<option value="'.$row["clubID"].'">'.$row["clubname"].'</option>';
+						};
+					?>
+				</select>
+			</label>
+			<label>
+				<span>职位：</span>
+				<select name="position_name">
+					<option selected="selected" value="会员">会员</option>
+					<option value="正团长">正团长</option>
+					<option value="副团长">副团长</option>
+					<option value="正部长">正部长</option>
+					<option value="副部长">副部长</option>
+			</select>
+			</label>
+			<br />
+			<label>
+				<span></span>
+				<input type="submit" class="button" value="提交">
+				<span>&nbsp;</span>
+				<input type="reset" class="button" value="清空">       
+			</label>
+		</form>
+	</body>
+</html>

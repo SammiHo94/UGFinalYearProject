@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<div style="height: 50%;width: 100%;">
+			<h3>已申请组织</h3>
+			<table class="zebra">
+			<thead><tr>
+				<th align = 'center'>参团编号</th>
+				<th align = 'center'>学号</th>
+				<th align = 'center'>姓名</th>
+			    <th align = 'center'>组织名</th>
+			    <th align = 'center'>部门名</th>
+			    <th align = 'center'>职位</th>
+			    <th align = 'center'>状态</th>
+			    <th align = 'center'>&nbsp;</th>
+			</tr></thead>
+			<tfoot>
+		    <tr>
+		    </tr>
+		 </tfoot>
+			<?php
+				session_start();
+				$stuID=$_SESSION["stuID"];
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM `已申请组织信息` where stuID = '".$stuID."'";
+			   	$result = mysql_query ($sql);
+			   	while ($row = mysql_fetch_array($result)){
+			   		echo "<tr>
+				   		<td align = 'center'>".$row['joinID']."</td>
+				   		<td align = 'center'>".$row['stuID']."</td>
+				   		<td align = 'center'>".$row['stuname']."</td>
+				   		<td align = 'center'>".$row['organname']."</td>
+				   		<td align = 'center'>".$row['dename']."</td>
+				   		<td align = 'center'>".$row['position']."</td>
+				   		<td align = 'center'>".$row['state']."</td>
+				   		<td align = 'center'><a href='../PHP_files/delete.php?mode=2&data=".$row['joinID']."'>删除</a></td>
+			   		</tr>";
+			   }
+?>
+		  </table>
+		</div>
+		<div style="height: 50%;width: 100%;">
+			<h3>已参加社团</h3>
+			<table class="zebra">
+			<thead><tr>
+				<th align = 'center'>参团编号</th>
+			    <th align = 'center'>社团名</th>
+			    <th align = 'center'>职位</th>
+			    <th align = 'center'>状态</th>
+			    <th align = 'center'>&nbsp;</th>
+			</tr></thead>
+			<tfoot>
+		    <tr>
+		    </tr>
+		 </tfoot>
+			<?php
+				$sql="SELECT joinID,clubname,position,state
+FROM `已申请参加社团信息` where stuID = '".$stuID."'";
+			   	$result = mysql_query ($sql);
+			   	while ($row = mysql_fetch_array($result)){
+			   		echo "<tr>
+				   		<td align = 'center'>".$row['joinID']."</td>
+				   		<td align = 'center'>".$row['clubname']."</td>
+				   		<td align = 'center'>".$row['position']."</td>
+				   		<td align = 'center'>".$row['state']."</td>
+				   		<td align = 'center'><a href='../PHP_files/delete.php?mode=3&data=".$row['joinID']."'>删除</a></td>
+			   		</tr>";
+			   }
+				mysql_close();
+?>
+		  </table>
+		</div>
+		
+	</body>
+</html>

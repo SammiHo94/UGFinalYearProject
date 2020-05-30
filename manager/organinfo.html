@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/form-style.css" />
+		<title></title>
+	</head>
+	<body>
+		<?php
+				session_start();
+				$organID=$_SESSION["organID"];
+				require "../PHP_files/functions.php";
+				powerconn($_SESSION["power"]);
+				
+				$sql="SELECT * FROM organ where organID = '".$organID."'";
+			   	$result = mysql_query ($sql);
+			   	$row = mysql_fetch_array($result);
+				mysql_close();
+?>
+		<form method="post" action="../PHP_files/update_organ.php" class="basic-grey" style="margin-left: 50px;">
+							<h1>组织资料</h1>
+							<label>
+								<span>组织名：</span>
+								<input type="text" name="name" <?php echo 'value="'.$row['organname'].'"';?> >
+							</label>
+							<label>
+								<span>组织号：</span>
+								<input type="text" name="organID" readonly <?php echo 'value="'.$row['organID'].'"';?> >
+							</label>
+							<label>
+								<span>简介：</span>
+								<textarea name="intro"> <?php echo $row['introduction'];?> </textarea>
+							</label>
+							<label>
+								<span>&nbsp;</span>
+								<input type="submit" class="button" value="修改">    
+							</label>
+						</form>
+	</body>
+</html>
